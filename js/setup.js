@@ -34,9 +34,7 @@ var fillBlockWizards = function () {
   var fragment = document.createDocumentFragment();
   for (var i = 0; i < 4; i++) {
     wizardsData[i] = getRandomData(wizardsData);
-  }
-  for (var j = 0; j < wizardsData.length; j++) {
-    fragment.appendChild(renderWizard(wizardsData[j]));
+    fragment.appendChild(renderWizard(wizardsData[i]));
   }
   similarListElement.appendChild(fragment);
 };
