@@ -11,19 +11,14 @@ var similarListElement = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 var wizardsData = [];
 
-var getRandomData = function () {
-  var randomDataWizard = {};
-
-  randomDataWizard.name = WIZARD_NAMES[Math.floor(Math.random(i) * WIZARD_NAMES.length)] + ' ' + WIZARD_LASTNAMES[Math.floor(Math.random(i) * WIZARD_LASTNAMES.length)];
-  randomDataWizard.coatColor = COAT_COLORS[Math.floor(Math.random(i) * COAT_COLORS.length)];
-  randomDataWizard.eyesColor = EYES_COLORS[Math.floor(Math.random(i) * EYES_COLORS.length)];
+var getRandomData = function (randomDataWizard) {
+  randomDataWizard = {};
+  randomDataWizard.name = WIZARD_NAMES[Math.floor(Math.random() * WIZARD_NAMES.length)] + ' ' + WIZARD_LASTNAMES[Math.floor(Math.random() * WIZARD_LASTNAMES.length)];
+  randomDataWizard.coatColor = COAT_COLORS[Math.floor(Math.random() * COAT_COLORS.length)];
+  randomDataWizard.eyesColor = EYES_COLORS[Math.floor(Math.random() * EYES_COLORS.length)];
 
   return randomDataWizard;
 };
-
-for (var i = 0; i < 4; i++) {
-  wizardsData[i] = getRandomData();
-}
 
 var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
@@ -37,7 +32,9 @@ var renderWizard = function (wizard) {
 
 var fillBlockWizards = function () {
   var fragment = document.createDocumentFragment();
-
+  for (var i = 0; i < 4; i++) {
+    wizardsData[i] = getRandomData(wizardsData);
+  }
   for (var j = 0; j < wizardsData.length; j++) {
     fragment.appendChild(renderWizard(wizardsData[j]));
   }
